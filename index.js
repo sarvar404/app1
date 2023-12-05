@@ -11,7 +11,7 @@ import cookieParser from "cookie-parser";
 dotenv.config();
 const app = express();
 // app.use(morgan("dev"));
-const PORT = process.env.PORT || 8001;
+const PORT = process.env.PORT || 3001;
 app.use(
   helmet({
     crossOriginResourcePolicy: false,
@@ -31,11 +31,15 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(express.json({ limit: "50mb" }));
 app.use(cors(corsOptions));
 app.use(cookieParser());
-app.use(express.static("public"));
+// app.use(express.static("./client/build"));
+// app.get("*", (request, response) => {
+//   response.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+// });
 
-app.get("/", async (request, response) => {
-  response.send("Cookies cleared and APIs working");
-});
+// app.get("/", async (request, response) => {
+//   response.send("Cookies cleared and APIs working");
+// });
+
 
 app.listen(PORT, () => {
   console.log(`connection is on :: >> ${PORT}`);
